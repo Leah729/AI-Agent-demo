@@ -3,15 +3,13 @@
 # ✅ 功能：对话式广告文案生成，支持语气选择、多语言、本地品牌知识接入、记忆功能、多轮交互
 
 import streamlit as st
-from langchain_openai import ChatOpenAI
-from langchain.agents import initialize_agent, Tool
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from langchain.chains.combine_documents.stuff import StuffDocumentsChain
-from langchain.vectorstores import FAISS
-from langchain.document_loaders import TextLoader
-from langchain.embeddings import OpenAIEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain_community.document_loaders import TextLoader
 from langchain.chains.retrieval_qa.base import RetrievalQA
 import os
 import tempfile
