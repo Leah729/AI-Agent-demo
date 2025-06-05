@@ -15,12 +15,11 @@ import os
 import tempfile
 import shutil
 
-# 安全方式读取 API 密钥
-openai_api_key = os.getenv("OPENAI_API_KEY", st.secrets.get("openai_api_key", ""))
-os.environ["OPENAI_API_KEY"] = openai_api_key
+# 安全方式读取 API 密钥（直接从 Streamlit Secrets）
+openai_api_key = st.secrets["openai_api_key"]
 
 # 初始化LLM和记忆
-llm = ChatOpenAI(temperature=0.7)
+llm = ChatOpenAI(api_key=openai_api_key, temperature=0.7)
 memory = ConversationBufferMemory(memory_key="chat_history")
 
 # Streamlit界面
