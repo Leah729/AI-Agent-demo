@@ -1,10 +1,9 @@
-
 # 📦 项目名称：AI广告文案生成助手（低代码 LangChain Agent 进阶版）
 # 💻 技术栈：LangChain + OpenAI + Streamlit + Python
 # ✅ 功能：对话式广告文案生成，支持语气选择、多语言、本地品牌知识接入、记忆功能、多轮交互
 
 import streamlit as st
-from langchain.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 from langchain.agents import initialize_agent, Tool
 from langchain.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
@@ -69,7 +68,7 @@ tone = st.selectbox("语气风格", ["情绪化", "理性说服", "幽默", "权
 language = st.selectbox("输出语言", ["中文", "英文", "日文"])
 
 # Prompt 模板
-template = '''
+template = """
 你是一位{platform}广告专家，请为以下产品生成符合{tone}风格的文案。
 
 产品：{product}
@@ -80,7 +79,7 @@ template = '''
 品牌背景（若有）：{brand_context}
 
 请输出80字以内广告文案。
-'''
+"""
 
 prompt = PromptTemplate(
     input_variables=["platform", "tone", "product", "features", "audience", "language", "brand_context"],
